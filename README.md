@@ -1,6 +1,6 @@
 # DataOperator Backend
 
-This repository holds DataOperator Backend, it is a part of 4 pieces consisting of DataSink, DataSource, DataOperator UI and this DataOperator Backend
+This repository holds DataOperator Backend, it is a part of 4 pieces consisting of DataSink, DataSource, DataOperator UI and this DataOperator Backend.
 This piece alone doesn't do much.
 
 ### Relevant Resources
