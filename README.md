@@ -23,7 +23,7 @@ Docker Image is the preferred way to test this POC.
 sudo docker pull dhrpoc/dhr
 ```
 
-### 3. Start docker
+### 2. Start docker
 Docker needs ports 10000-10004 and 20001-20002 open, following command works:
 ```
 sudo docker run --name dhr -m 512m -it -p 10000:10000 -p 10001:10001 -p 10002:10002 -p 10003:10003 -p 10004:10004 -p 20001:20001 -p 20002:20002 dhrpoc/dhr
