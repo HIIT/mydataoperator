@@ -4,7 +4,7 @@ This repository holds DataOperator Backend, it is a part of 4 pieces consisting 
 This piece alone doesn't do much.
 
 ### Relevant Resources
-
+This is a POC of MyData Architechture.
 [MyData Architecture](https://github.com/HIIT/mydata-stack)
 
 ---
@@ -13,9 +13,8 @@ This piece alone doesn't do much.
 
 ###Docker setup
 
-Docker Image is the preferred way to test this Demo.
+Docker Image is the preferred way to test this POC.
 
----
 ### Prerequisites
 
  [Docker] (https://www.docker.com/)
@@ -57,8 +56,8 @@ Everything should running , you can visit
 │   ├── db_handler_Basic.py         # Basic class for DB handling. Simple functions for interacting with DataOperator Backend specific DB model. Based on Core class
 │   ├── db_handler_High.py          # High class for DB handling. Complex functions for API. Based on Basic class
 │   ├── db_handler.py               # Core class for DB handling. Simple functions and initialization for DB.
-│   ├── GenericConfigFile.json      # Config file setting up the Demo (DO_backend doesn't utilize everything it could from there yet)
-│   ├── Initdb.py                   # Class holding Database initialization code for the Demo
+│   ├── GenericConfigFile.json      # Config file setting up the POC (DO_backend doesn't utilize everything it could from there yet)
+│   ├── Initdb.py                   # Class holding Database initialization code for the POC
 │   ├── Json2Swag.py                # Tool to create swagger documentation definitions based on existing JSON.
 │   ├── README.md
 │   ├── resources
