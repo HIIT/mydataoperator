@@ -3,7 +3,7 @@
 This repository holds DataOperator Backend, it is a part of 4 pieces consisting of [DataSink](https://github.com/dhrproject/mydatasink), [DataSource](https://github.com/dhrproject/mydatasource), [DataOperator UI](https://github.com/dhrproject/mydataoperatorui) and this DataOperator Backend.
 This piece alone doesn't do much.
 
-### Relevant Resources
+## Relevant Resources
 This is a POC of [MyData Architecture](https://github.com/HIIT/mydata-stack)
 
 ---
@@ -40,7 +40,10 @@ cd　~
 Everything should running , you can visit
 [http://127.0.0.1:10000](http://127.0.0.1:10000) to check it.
 
----
+### 3. Start DataOperator
+Please check [DataOperator UI](https://github.com/dhrproject/mydataoperatorui#getting-started).
+
+
 ## DataOperator Backend
 
 ### Repository structure
