@@ -16,19 +16,15 @@ This piece alone doesn't do much.
 Docker Image is the preferred way to test this Demo.
 
 ---
-### 1. Install Docker
-#### for ubuntu
-> sudo apt-get install docker.io
+### Prerequisites
 
-#### for centos
-> sudo yum install docker
-
-> sudo service docker start
-
-### 2. Download docker images
+ [Docker] (https://www.docker.com/)
+ 
+### 1. Download docker images
 > sudo docker pull dhrpoc/dhr
 
 ### 3. Start docker
+Docker needs ports 10000-10004 and 20001 open, following command works:
 > sudo docker run --name dhr -m 512m -it -p 10000:10000 -p 10001:10001 -p 10002:10002 -p 10003:10003 -p 10004:10004 -p 20001:20001 -p 20002:20002 dhrpoc/dhr
 
 now you will have a docker shell
@@ -73,8 +69,6 @@ Everything should running , you can visit
 
 ```
 
-
-ASCII structure of the project, how do we represent the branches in the final structure if its done using folders?
 
 ### Documentation
 
