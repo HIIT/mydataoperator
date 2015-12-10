@@ -1,6 +1,6 @@
 # Stand alone setup
 ###Prerequisites:
-
+```
 Python 2.7
 Flask
 Flask-Restful
@@ -14,7 +14,7 @@ SQLAlchemy
 MySQL-python
 
 MySQL compliant Server
-
+```
 ### Cloning the repository and initial configuration.
 
 ```
