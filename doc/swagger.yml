@@ -1,0 +1,898 @@
+swagger: '2.0'
+info:
+  title: DataOperator API
+  description: DHR POC DataOperator API
+  version: 1.0.0
+host: 178.62.244.150:8080
+schemes:
+  - http
+basePath: /
+produces:
+  - application/json
+securityDefinitions:
+  BasicAuth:
+    type: basic
+    description: Authentication using HTTP Basic Authentication
+
+paths:
+  /ui/userInformation:
+    get:
+      parameters:
+      - name: select
+        type: string
+        in: query
+        description: |
+          Parameter is a string containing any or all of the followin in a string:
+          gender,status,firstName,lastName,email,address1,address2,cities_id,regions_id,countries_id,languages_id,nationalities_id,img_url_avatar,regions_id,created
+        required: false        
+      security:
+       - BasicAuth: []
+      summary: Returns userinformation based on the fields defined to the select parameter
+      description: |
+        The userInformation endpoint returns JSON formatted list of all requested userinfomation fields.
+
+      tags:
+        - DataBase
+        - UI
+        - User
+      responses:
+        '200':
+          description: JSON of Services in Database
+          schema:
+            $ref: '#/definitions/UserInfo'
+            items:
+              $ref: '#/definitions/UserInfo'
+        '500':
+          description: Internal Server Error, occurs when Database can't be accessed.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /ui/services:
+    get:
+      parameters:
+      - name: categories
+        type: string
+        in: query
+        description: Filter results by given categories seperated by comma.
+        required: true
+      - name: labels
+        type: string
+        in: query
+        description: Filter results by given labels seperated by comma.
+        required: true
+      - name: current
+        type: integer
+        in: query
+        description: Return starting from X index of results.
+        required: true
+      - name: count
+        type: integer
+        in: query
+        description: Return hits untill X index of results.
+        required: true    
+      security:
+       - BasicAuth: []
+      summary: List of services without contract.
+      description: |
+        The Services endpoint returns JSON formatted list of all services
+        known to DataOperator that the user doesn't have contract with.
+      tags:
+        - UI
+        - User
+        - DataBase
+      responses:
+        '200':
+          description: JSON of Services in Database without contract with user
+          schema:
+            $ref: '#/definitions/Service'
+            items:
+              $ref: '#/definitions/Service'
+        '500':
+          description: Internal Server Error, occurs when Database can't be accessed.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /ui/services/{id}:
+    get:
+      parameters:
+      - name: id
+        type: string
+        in: path
+        description: Id for service to query
+        required: true
+      security:
+       - BasicAuth: []
+      summary: Comprehensive Service info
+      description: |
+        The service/{id} endpoint returns JSON formatted info about
+        service and its connections on user and users other services.
+      tags:
+        - DataBase
+        - UI
+        - Service
+      responses:
+        '200':
+          description: JSON formatted information of Service
+          schema:
+            $ref: '#/definitions/ServiceID'
+            items:
+              $ref: '#/definitions/ServiceID'
+        '500':
+          description: Internal Server Error, occurs when Database can't be accessed.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /ui/myServices:
+    get:
+      parameters:
+      - name: categories
+        type: string
+        in: query
+        description: Filter results by given categories seperated by comma. Leave Empty for "all"
+        required: true
+      - name: current
+        type: integer
+        in: query
+        description: Return starting from X index of results.
+        required: true
+      - name: count
+        type: integer
+        in: query
+        description: Return hits untill X index of results.
+        required: true    
+      security:
+       - BasicAuth: []
+      summary: List of services we have contract with
+      description: |
+        The Services endpoint returns JSON formatted list of all services
+        known to DataOperator that the user has contract with including which if any other services are linked to this service.
+      tags:
+        - UI
+        - User
+        - DataBase
+      responses:
+        '200':
+          description: JSON of Services in Database with contract with user
+          schema:
+            $ref: '#/definitions/MyServices'
+            items:
+              $ref: '#/definitions/MyServices'
+        '500':
+          description: Internal Server Error, occurs when Database can't be accessed.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /ui/foreing_login:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+       - name: JSON
+         in: body
+         description: JSON containing credentials.
+         required: true        
+         schema:
+           $ref: '#/definitions/foreing_Login'
+
+      security:
+       - BasicAuth: []
+      summary: Login to remote service and fetch SCT from it.
+      description: |
+        The foreing_login endpoint logins user to his account on
+        sink or source service and fetches Service Contract Template to display to the user.
+      tags:
+        - UI
+        - User
+        - DataBase
+      responses:
+        '200':
+          description: Service Contract Template
+          schema:
+            $ref: '#/definitions/SCT'
+            items:
+              $ref: '#/definitions/SCT'
+        '401':
+          description: External service didn't return ext_id
+          schema:
+            $ref: '#/definitions/Error'
+        '503':
+          description: Error Service Unavailable when logging in fails due to timeout or connection was refused.
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server error.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /ui/myServices/numberOfServices:
+    get:
+      parameters:
+      - name: status
+        type: string
+        in: query
+        description: |
+          Count of services in defined status, possible arguments
+          are "All, Disabled, Active"
+        required: true
+      security:
+       - BasicAuth: []
+      summary: Number of services with contract filtered by status.
+      description: |
+        The myServices/numberOfServices endpoint returns JSON formatted info
+        about number of services we have contract with filtered by status.
+      tags:
+        - DataBase
+        - UI
+        - Service
+      responses:
+        '200':
+          description: JSON formatted service count
+          schema:
+            $ref: '#/definitions/numberOfServices'
+            items:
+              $ref: '#/definitions/numberOfServices'
+        '500':
+          description: Internal Server Error, occurs when Database can't be accessed.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /verify_rpt:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+       - name: JSON
+         in: body
+         description: JSON RPT
+         required: true        
+         schema:
+           $ref: '#/definitions/rpt_verification'
+      security:
+       - BasicAuth: []
+      summary: Verify RPT operator has signed for both authenticity and validity.
+      description: |
+        /verify_rpt expects RPT to verify it was created by the operator
+        and is still valid.
+      tags:
+        - DataBase
+        - Service
+        - DataSource
+      responses:
+        '200':
+          description: Returns JSON containing the result of verification.
+          schema:
+            $ref: '#/definitions/rpt_verification_response'
+            items:
+              $ref: '#/definitions/rpt_verification_response'
+        '500':
+          description: Internal Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /ui/accept_contract:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+       - name: JSON
+         in: body
+         description: JSON containing accepted version of SCT
+         required: true        
+         schema:
+           $ref: '#/definitions/SCT'
+      security:
+       - BasicAuth: []
+      summary: Accept SCT and form contract between user and service
+      description: |
+        /ui/accept_contract takes SCT that user has accepted and finishes
+        creation of contract between service and user.
+      tags:
+        - DataBase
+        - Service
+        - DataSource
+        - DataSink
+      responses:
+        '200':
+          description: Returns JSON containing "success" if succesfull
+          schema:
+            $ref: '#/definitions/accept_contract_response'
+            items:
+              $ref: '#/definitions/accept_contract_response'
+        '500':
+          description: Internal Error
+          schema:
+            $ref: '#/definitions/Error'
+        '400':
+          description: Validating of SCT format failed.
+          schema:
+            $ref: '#/definitions/Error'
+        '403':
+          description: Signing of SCT failed.
+          schema:
+            $ref: '#/definitions/Error'            
+
+  /ui/give_consent:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+       - name: JSON
+         in: body
+         description: JSON containing rs_id of ResourceSet we want to grant consent for
+         required: true        
+         schema:
+           $ref: '#/definitions/give_consent_params'
+      security:
+       - BasicAuth: []
+      summary: Grant consent for ResourceSet
+      description: |
+        /ui/give_consent takes in rs_id and tells the backend consent for it has been granted allowing data flow
+      tags:
+        - DataBase
+        - Service
+        - DataSource
+        - DataSink
+      responses:
+        '200':
+          description: Returns JSON containing "success" if succesfull
+          schema:
+            $ref: '#/definitions/give_consent_response'
+            items:
+              $ref: '#/definitions/give_consent_response'
+        '500':
+          description: Internal Error
+          schema:
+            $ref: '#/definitions/Error'
+  /ui/ConsentView:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+       - name: JSON
+         in: body
+         description: JSON with required parameters
+         required: true        
+         schema:
+           $ref: '#/definitions/consentView_params'
+      security:
+       - BasicAuth: []
+      summary: Return information about existing consent.
+      description: |
+        /ui/ConsentView takes few parameters and returns detailed information
+        about existing consent.
+      tags:
+        - DataBase
+        - Service
+        - DataSource
+        - DataSink
+      responses:
+        '200':
+          description: |
+            Returns JSON detailed information needed to show consentview and
+            selected categories/licenses if consent_id parameter was given.
+          schema:
+            $ref: '#/definitions/consentView_response'
+            items:
+              $ref: '#/definitions/consentView_response'
+        '500':
+          description: Internal Error
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /protection/resourceSets:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+       - name: JSON
+         in: body
+         description: JSON with required parameters
+         required: true        
+         schema:
+           $ref: '#/definitions/resourceSets_params'
+      security:
+       - BasicAuth: []
+      summary: Register a resource set and return rs_id
+      description: |
+        /protection/resourceSets takes in categories and service_id and makes a
+        resource set giving it rs_id
+      tags:
+        - DataBase
+        - Service
+        - DataSource
+      responses:
+        '200':
+          description: |
+            Returns JSON with rs_id and categories
+          schema:
+            $ref: '#/definitions/resourceSets_response'
+            items:
+              $ref: '#/definitions/resourceSets_response'
+        '500':
+          description: Internal Error
+          schema:
+            $ref: '#/definitions/Error'  
+
+  /ui/disable_consent/{consent_id}:
+    get:
+      parameters:
+      - name: consent_id
+        type: string
+        in: path
+        description: Id for consent to disable
+        required: true
+      security:
+       - BasicAuth: []
+      summary: Disables consent.
+      description: |
+        Disables existing consent.
+      tags:
+        - DataBase
+        - UI
+        - Service
+      responses:
+        '200':
+          description: String containing "Removed."
+          schema:
+            $ref: '#/definitions/disable_consent_response'
+            items:
+              $ref: '#/definitions/disable_consent_response'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+
+  /RESET:
+    get:
+      security:
+       - BasicAuth: []
+      summary: Resets database.
+      description: |
+        Clears up the backend operator to initial clean factory state.
+      tags:
+        - DataBase
+      responses:
+        '200':
+          description: JSON formatted config file.
+          schema:
+            $ref: '#/definitions/RESET_response'
+            items:
+              $ref: '#/definitions/RESET_response'
+        '500':
+          description: Internal Server Error.
+          schema:
+            $ref: '#/definitions/Error'
+
+definitions:
+  Error:
+    type: object
+    properties:
+      message:
+        type: string
+        description: Backend error message.
+
+  UserInfo:
+    type: object
+    properties:
+      id:
+        type: object
+        properties:
+          lastName:
+            type: string
+            description: Users lastname
+          firstName:
+            type: string
+            description: Users firstname
+          created:
+            type: string
+            description: Date the user was created
+          address1:
+            type: string
+            description: Users main address
+          address2:
+            type: string
+            description: Users secondary address
+          countries_id:
+            type: string
+            description: Id to the country table in DataBase to identify users country.
+          img_url_avatar:
+            type: string
+            description: string containing url to users avatar file.
+          languages_id:
+            type: string
+            description: Id to the languages table in DataBase to identify users language.
+          gender:
+            type: string
+            description: Users Gender as  Male or Female
+          nationalities_id:
+            type: string
+            description: Id to the nationalities table in DataBase to identify users language nationality.
+          regions_id:
+            type: string
+            description: Id to the regions table in DataBase to identify users region.
+          email:
+            type: string
+            description: Users email address
+          cities_id:
+            type: string
+            description: Id to the cities table in DataBase to identify users city.
+  Service:
+    type: object
+    properties:
+      id:
+        type: object
+        properties:
+          labels:
+            type: array
+            items:
+              type: string
+            description: Labels the matching service has
+          img_url_overview:
+            type: string
+            description: url to services overview image
+          description:
+            type: string
+            description: Description of the service
+          categories:
+            type: array
+            items:
+              type: string
+            description: Categories the matching service has
+          name:
+            type: string
+            description: Services name
+  MyServices:
+    type: object
+    properties:
+      id:
+        type: object
+        properties:
+          connections:
+            description: Information about services this service is connected to.
+            type: object
+            properties:
+              DataShared:
+                type: object
+                description: Empty if none found.
+                properties:
+                  ServiceName:
+                    type: object
+                    properties:
+                      consentActive:
+                        type: string
+                        description: "Status of consent: active, paused or withdrawn"
+                      serviceID:
+                        type: string
+                        description: Services unique serviceID
+                      img_url_logo:
+                        type: string
+                        description: Url to services logo image
+                      description:
+                        type: object
+                        properties:
+                          short:
+                            type: string
+                            description: Short description of the service
+              ReceivingData:
+                type: object
+                description: Empty if none found.
+                properties:
+                  ServiceName:
+                    type: object
+                    properties:
+                      consentActive:
+                        type: string
+                        description: "Status of consent: active, paused or withdrawn"
+                      serviceID:
+                        type: string
+                        description: Services unique serviceID
+                      img_url_logo:
+                        type: string
+                        description: url to services logo image
+                      description:
+                        type: object
+                        properties:
+                          short:
+                            type: string
+                            description: Short description of the service
+          name:
+            type: string
+            description: Services name
+          categories:
+            type: array
+            items:
+              type: string
+            description: Array of services categories
+  ServiceID:
+    type: object
+    properties:
+      id:
+        type: object
+        properties:
+          img_url_logo:
+            type: string
+            description: Url to services logo image
+          description:
+            type: object
+            properties:
+              short:
+                type: string
+                description: Short description of the service
+              longer:
+                type: string
+                description: Long description of the service
+          labels:
+            type: array
+            items:
+              type: string
+            description: Labels this service has
+          commonConsents:
+            type: array
+            items:
+              type: string
+            description: List of commonConsents for service
+          img_url_banner:
+            type: string
+            description: Url to services banner immage
+          potentialServicesWithoutContract:
+            type: object
+            description: Empty if none found.
+            properties:
+              id:
+                type: object
+                properties:
+                  role:
+                    type: string
+                    description: Services role Sink, Source or Both
+          img_url_overview:
+            type: string
+            description: Url to services overview image
+          role:
+            type: string
+            description: Services role Sink, Source or Both
+          servicesWithConsent:
+            type: object
+            properties:
+              ServiceName:
+                type: object
+                properties:
+                  duration:
+                    type: string
+                    description: string containing duration
+                  consentStatus:
+                    type: string
+                    description: "Status of the consent: active, paused or withdrawn"
+                  role:
+                    type: string
+                    description: Services role Sink, Source or Both
+                  consentID:
+                    type: string
+                    description: Consents unique consentID
+          potentialServicesWithContract:
+            type: object
+            description: Empty if none found.
+            properties:
+              id:
+                type: object
+                properties:
+                  contractStatus:
+                    type: string
+                    description: "Status of the contract: active, paused or withdrawn"
+                  role:
+                    type: string
+                    description: Services role Sink, Source or Both
+                  contractID:
+                    type: string
+                    description: Contracts unique contractID
+          categories:
+            type: array
+            items:
+              type: string
+            description: List of services categories
+          name:
+            type: string
+            description: Services name
+  foreing_Login:
+    type: object
+    properties:
+      username:
+        type: string
+        description: Username of the service we want to login into
+      service_id:
+        type: string
+        description: Services unique ID
+      password:
+        type: string
+        description: Password of the service we want to login into
+  SCT:
+    type: object
+    properties:
+        contract_terms:
+          type: string
+          description: Contract terms defined in SCT of service
+        status:
+          type: string
+          description: "Status of the SCT: active, paused or withdrawn"
+        user_id:
+          type: string
+          description: External services user id
+        data_type:
+          type: array
+          items:
+            type: string
+          description: Categories of this Service
+        created_at:
+          type: string
+          description: UTC Timestamp as Epoch (seconds)
+        legal_role:
+          type: string
+          description: string containing legal_role
+        actor_id:
+          type: string
+          description: Unique ID of the service
+        endpoint_uri:
+          type: string
+          description: Url showing where the services endpoint can be found.
+        role:
+          type: string
+          description: Services role Sink, Source or Both
+        validity_period:
+          type: string
+          description: "Validity period for SCT"
+        intendet_use:
+          type: string
+          description: "Intended use for the Data as: free / comm-sell / comm-keep / anon-research" 
+  numberOfServices:
+    type: object
+    properties:
+      numberOfServices:
+        type: integer
+        description: Number of services with contract filtered by the query string containing status.
+  rpt_verification:
+    type: object
+    properties:
+      rpt:
+        type: string
+        description: Encoded RPT we want to verify.
+  rpt_verification_response:
+    type: object
+    properties:
+      status:
+        type: boolean
+        description: Returns True if RPT was valid, False if not.
+
+  accept_contract_response:
+    type: object
+    properties:
+      status:
+        type: string
+        description: If accepting contract was a success we return "success"
+        
+  give_consent_params:
+    type: object
+    properties:
+      rs_id:
+        type: object
+        properties:
+          rs_id:
+            type: string
+            description: |
+              String containing rs_id of the resource set we give consent to.
+              
+  give_consent_response:
+    type: object
+    description: This needs refactoring, inconsistent response with redundancy.
+    properties:
+      status:
+        type: string
+        description: 200 if success
+      success:
+        type: boolean
+        description: True if success
+              
+  consentView_params:
+    type: object
+    properties:
+      source_id:
+        type: integer
+        description: Source services unique ID
+      consent_id:
+        type: string
+        description: Consents unique ID , this is OPTIONAL
+      sink_id:
+        type: string
+        description: Sink services unique ID
+        
+  consentView_response:
+    type: object
+    properties:
+      source:
+        type: object
+        properties:
+          service_id:
+            type: integer
+            description: Services unique ID
+          img_url_logo:
+            type: string
+            description: Url to services logo image
+          name:
+            type: string
+            description: Services name
+          categories:
+            type: array
+            items:
+              type: string
+            description: List of categories this service has.
+          selected_categories:
+            type: array
+            items:
+              type: string
+            description: |
+              If existing consent ID is given when making request this list will have
+              all the categories selected in the consent given.
+      sink:
+        type: object
+        properties:
+          licenses:
+            type: array
+            items:
+              type: string
+            description: List of licenses this service has.
+          service_id:
+            type: integer
+            description: Services unique ID
+          img_url_logo:
+            type: string
+            description: Url to services logo image
+          name:
+            type: string
+            description: Services name
+          selected_licenses:
+            type: array
+            items:
+              type: string
+            description: |
+              If existing consent ID is given when making request this list will have
+              all the licenses selected in the consent given.
+  resourceSets_response:
+    type: object
+    properties:
+      rs_id:
+        type: string
+        description: rs_id generated for the ResourceSet
+      categories:
+        type: array
+        items:
+          type: string
+        description: List of categories included in this ResourceSet
+  resourceSets_params:
+    type: object
+    properties:
+      service_id:
+        type: string
+        description: Services unique ID
+      categories:
+        type: array
+        items:
+          type: string
+        description: Categories selected for the ResourceSet
+
+  disable_consent_response:
+    type: string
+    description: Returns just plain string "Removed." when succesfull
+    
+  RESET_response:
+    type: string
+    description: String containing information reset was succesfull
