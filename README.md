@@ -81,4 +81,4 @@ Documentation of API's used by DataOperator UI, Sink and Source can be found in 
 
 ### Copying and License
 
-This code is licensed under MIT
+This code is licensed under [MIT](https://github.com/dhrproject/mydataoperator/blob/master/LICENSE.md)
