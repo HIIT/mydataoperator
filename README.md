@@ -79,7 +79,7 @@ Everything should running , you can visit
 
 ### Documentation
 
-Documentation of API's used by DataOperator UI, Sink and Source can be found in file swagger.yml in /doc as well as instructions for stand alone setup without docker. The stand alone setup wont include DataOperator UI, DataSink or DataSource, just the DataOperator Backend.
+Documentation of API's used by DataOperator UI, Sink and Source can be found in file swagger.yml in /doc as well as instructions for stand alone setup without docker.
 
 ### Copying and License
 
