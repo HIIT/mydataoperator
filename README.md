@@ -4,8 +4,7 @@ This repository holds DataOperator Backend, it is a part of 4 pieces consisting 
 This piece alone doesn't do much.
 
 ### Relevant Resources
-This is a POC of MyData Architechture.
-[MyData Architecture](https://github.com/HIIT/mydata-stack)
+This is a POC of [MyData Architecture](https://github.com/HIIT/mydata-stack)
 
 ---
 
