@@ -1,4 +1,8 @@
 # Stand alone setup
+The stand alone setup wont include DataOperator UI, DataSink or DataSource, just the DataOperator Backend.
+ 
+ ---
+ 
 ###Prerequisites:
 ```
 Python 2.7
