@@ -1,5 +1,5 @@
 # Stand alone setup
-The stand alone setup wont include DataOperator UI, DataSink or DataSource, just the DataOperator Backend.
+This stand alone setup wont include DataOperator UI, DataSink or DataSource, just the DataOperator Backend.
  
  ---
  
@@ -26,7 +26,7 @@ git clone https://github.link.to.this.repository/
 cd dhr-poc-1
 ```
 
-Edit the DataBase credentials in db_handler.py near line 67 to match your setup
+Edit database credentials in db_handler.py near line 67 to match your setup
 ```python
 self.engine = create_engine('mysql+mysqldb://root:XmNT86Pi@127.0.0.1/dataoperator',
 ```
