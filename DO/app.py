@@ -261,11 +261,11 @@ class UserInformation(Resource):
                 debug("UserInformation took: {}s".format(time.time() - t))
                 return resp
             raise CustomError(
-                "An Error occurred in UserInformation, please check you typed the fields correctly and provided 'select?' query string.",
-                code=400)
+                "An Error occurred in UserInformation."
+                " Please check you typed the fields correctly and provided 'select?' query string.", code=400)
         except Exception as e:
-            raise CustomError("An Error occurred in UserInformation. Error: {}".format(error_handler(e, self.__class__.__name__)),
-                              code=500)
+            raise CustomError("An Error occurred in UserInformation."
+                              " Error: {}".format(error_handler(e, self.__class__.__name__)),code=500)
 
 
 class MyServices(Resource):
@@ -283,8 +283,8 @@ class MyServices(Resource):
             return resp
         except Exception as e:
             error(error_handler(e, self.__class__.__name__))
-            raise CustomError("An Error occurred, please check you provided required query fields. Error: {}".format(
-                error_handler(e, self.__class__.__name__)), code=400)
+            raise CustomError("An Error occurred, please check you provided required query fields."
+                              " Error: {}".format(error_handler(e, self.__class__.__name__)), code=400)
 
 
 class MyServices_Number(Resource):
@@ -296,8 +296,8 @@ class MyServices_Number(Resource):
                 return response(db.myServices_numberOfServices(status.title(), session["username"]))
         except Exception as e:
             raise CustomError(
-                "An Error occurred, please check you typed the fields correctly and all required parameters. Error: {}".format(
-                    error_handler(e, self.__class__.__name__)), code=400)
+                "An Error occurred, please check you typed the fields correctly and all required parameters."
+                " Error: {}".format(error_handler(e, self.__class__.__name__)), code=400)
 
 
 class Services(Resource):
@@ -318,8 +318,9 @@ class Services(Resource):
         except Exception as e:
             error(error_handler(e, self.__class__.__name__))
             raise CustomError(
-                description="Services endpoint in app.py encountered an error. Make sure you supplied current, count, categories and labels parameters in query string. Error: {}".format(
-                    error_handler(e, self.__class__.__name__)), code=500)
+                description="Services endpoint in app.py encountered an error."
+                            " Make sure you supplied current, count, categories and labels parameters in query string."
+                            " Error: {}".format(error_handler(e, self.__class__.__name__)), code=500)
 
 
 class Service(Resource):
@@ -699,40 +700,38 @@ class SetConsentStatus(Resource):
         return response({"status": db.set_consent_status(js["consent_id"], js["status"], session["username"])})
 
 
-api.add_resource(RunningTest, '/')  # DEBUG/TESTING not for final version
-api.add_resource(UserInformation, api_path_ui + 'userInformation')  # Swag
-api.add_resource(MyServices, api_path_ui + 'myServices')  # Swag
-api.add_resource(MyServices_Number, api_path_ui + 'myServices/numberOfServices')  # Swag
-api.add_resource(Services, api_path_ui + 'services')  # Swag
-api.add_resource(Service, api_path_ui + 'services/<ide>')  # Swag
+api.add_resource(RunningTest, '/')
+api.add_resource(UserInformation, api_path_ui + 'userInformation')                          # Documented in swagger.yml
+api.add_resource(MyServices, api_path_ui + 'myServices')                                    # Documented in swagger.yml
+api.add_resource(MyServices_Number, api_path_ui + 'myServices/numberOfServices')            # Documented in swagger.yml
+api.add_resource(Services, api_path_ui + 'services')                                        # Documented in swagger.yml
+api.add_resource(Service, api_path_ui + 'services/<ide>')                                   # Documented in swagger.yml
 
-# UNUSED
-api.add_resource(Location_and_Nationality, api_path_ui + 'location/<table_name>',
+api.add_resource(Location_and_Nationality, api_path_ui + 'location/<table_name>',           # UNUSED
                  api_path_ui + 'language/<table_name>')
-api.add_resource(Location_and_Nationality_id, api_path_ui + 'location/<table_name>/<ide>',
+api.add_resource(Location_and_Nationality_id, api_path_ui + 'location/<table_name>/<ide>',  # UNUSED
                  api_path_ui + 'language/<table_name>/<ide>')
-#
 
-api.add_resource(Login, api_path_ui + "foreign_login")  # Swag
-api.add_resource(VerifyRPT, api_path + "verify_rpt")  # Swag
-api.add_resource(UiSCT, api_path_ui + "accept_contract")  # Swag
-api.add_resource(GiveConsent, api_path_ui + "give_consent")  # Swag
-api.add_resource(ResourceSets, api_path + "protection/resourceSets")  # Swag
+api.add_resource(Login, api_path_ui + "foreign_login")                                      # Documented in swagger.yml
+api.add_resource(VerifyRPT, api_path + "verify_rpt")                                        # Documented in swagger.yml
+api.add_resource(UiSCT, api_path_ui + "accept_contract")                                    # Documented in swagger.yml
+api.add_resource(GiveConsent, api_path_ui + "give_consent")                                 # Documented in swagger.yml
+api.add_resource(ResourceSets, api_path + "protection/resourceSets")                        # Documented in swagger.yml
 
-api.add_resource(ResourceSet, api_path + "protection/resourceSets/<ide>")  # UNUSED
-api.add_resource(Licenses, api_path + "db/licenses")  # UNUSED
-api.add_resource(ServDB, api_path + "db/services")  # Swag # UNUSED
+api.add_resource(ResourceSet, api_path + "protection/resourceSets/<ide>")                   # UNUSED
+api.add_resource(Licenses, api_path + "db/licenses")                                        # UNUSED
+api.add_resource(ServDB, api_path + "db/services")                                          # Documented in swagger.yml
 
-api.add_resource(ConsentView, api_path + "ui/ConsentView")  # TODO: Document # Swag
+api.add_resource(ConsentView, api_path + "ui/ConsentView")                                  # Documented in swagger.yml
 
-api.add_resource(Active_Licenses, api_path + "ui/active_licenses/<id>")  # TODO: Document # UNUSED
-api.add_resource(Active_Categories, api_path + "ui/active_categories/<id>")  # TODO: Document # UNUSED
+api.add_resource(Active_Licenses, api_path + "ui/active_licenses/<id>")                     # TODO: Document # UNUSED
+api.add_resource(Active_Categories, api_path + "ui/active_categories/<id>")                 # TODO: Document # UNUSED
 
-api.add_resource(Disable_Consent, api_path + "ui/disable_consent/<id>")  # Swag
-api.add_resource(Config, api_path + "config")  # TODO: Document # Swag
-api.add_resource(ResetDB, api_path + "RESET")  # TODO: Document # Swag
-api.add_resource(TestConsentStatus, api_path + "CTest")  # TODO: Document # DEBUG/TESTING not for final version
-api.add_resource(SetConsentStatus, api_path + "db/ConsentStatus")  # TODO: Document # UNUSED
+api.add_resource(Disable_Consent, api_path + "ui/disable_consent/<id>")                     # Documented in swagger.yml
+api.add_resource(Config, api_path + "config")                                               # Documented in swagger.yml
+api.add_resource(ResetDB, api_path + "RESET")                                               # Documented in swagger.yml
+api.add_resource(TestConsentStatus, api_path + "CTest")                                     # TODO: Document, Testing
+api.add_resource(SetConsentStatus, api_path + "db/ConsentStatus")                           # TODO: Document # UNUSED
 
 if __name__ == '__main__':
     app.run(debug=False, port=8080, host="0.0.0.0", threaded=False)
