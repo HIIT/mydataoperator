@@ -3,9 +3,6 @@
 This is a part of proof-of-concept implementation of [MyData Architecture](https://github.com/HIIT/mydata-stack). 
 This repository holds DataOperator Backend, it is a part of 4 pieces consisting of [DataSink](https://github.com/dhrproject/mydatasink), [DataSource](https://github.com/dhrproject/mydatasource), [DataOperator UI](https://github.com/dhrproject/mydataoperatorui) and this DataOperator Backend.
 
-## Relevant Resources
-This is a POC of [MyData Architecture](https://github.com/HIIT/mydata-stack)
-
 ---
 
 ## Getting started
