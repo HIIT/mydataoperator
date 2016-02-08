@@ -1,11 +1,22 @@
 {
+  "data_licenses": [
+    "Research-use.Internal-use",
+    "Research-use.External-partners",
+    "Research-use.Anonymizes-data",
+    "Development-use.Internal-use",
+    "Development-use.External-partners",
+    "Sales-and-Marketing",
+    "Advertising",
+    "Marketing-Partners",
+    "Resale"
+  ],
   "logging_server": {
     "1": {
-      "name": "LoggingServer",
       "desc": "The LoggingServer",
+      "name": "LoggingServer",
       "network": {
-        "ip_public": "",
         "ip_private": "",
+        "ip_public": "",
         "port_api": "",
         "port_http": "",
         "port_https": ""
@@ -14,48 +25,6 @@
   },
   "operators": {
     "1": {
-      "name": "DataOperator",
-      "desc": "The DataOperator",
-      "network": {
-        "ip_public": "178.62.244.150",
-        "ip_private": "10.133.57.249",
-        "port_api": "8080",
-        "port_http": "80",
-        "port_https": "443"
-      },
-      "user_accounts": [
-        {
-          "username": "testuser",
-          "password": "Hello",
-          "user_id": "1",
-          "status_id": "1",
-          "is_admin": "0"
-        },
-        {
-          "username": "Testeri",
-          "password": "Hello",
-          "user_id": "1",
-          "status_id": "1",
-          "is_admin": "0"
-        }
-      ],
-      "users": [
-        {
-          "gender": "",
-          "status_id": "1",
-          "firstname": "Test",
-          "lastname": "User",
-          "email": "test@user.com",
-          "address1": "Erkki Koiso-kanttilan Katu 45",
-          "address2": "",
-          "city": "1",
-          "region": "1",
-          "country": "1",
-          "nationality": "1",
-          "language": "1",
-          "img_url_avatar": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/avatar.png"
-        }
-      ],
       "cities": [
         {
           "name": "Oulu",
@@ -64,16 +33,6 @@
         {
           "name": "Tornio",
           "region_id": "2"
-        }
-      ],
-      "regions": [
-        {
-          "name": "Pohjois-Pohjanmaa",
-          "region_id": "1"
-        },
-        {
-          "name": "Norrbotten",
-          "country_id": "2"
         }
       ],
       "countries": [
@@ -86,23 +45,211 @@
           "region_id": "2"
         }
       ],
+      "desc": "The DataOperator",
       "endpoints": [
         {
           "RPT_introspection_endpoint": "/verify_rpt"
+        }
+      ],
+      "name": "DataOperator",
+      "network": {
+        "ip_private": "127.0.0.1",
+        "ip_public": "127.0.0.1",
+        "port_api": "8080",
+        "port_http": "80",
+        "port_https": "443"
+      },
+      "regions": [
+        {
+          "name": "Pohjois-Pohjanmaa",
+          "region_id": "1"
+        },
+        {
+          "country_id": "2",
+          "name": "Norrbotten"
+        }
+      ],
+      "user_accounts": [
+        {
+          "is_admin": "0",
+          "password": "Hello",
+          "status_id": "1",
+          "user_id": "1",
+          "username": "testuser"
+        },
+        {
+          "is_admin": "0",
+          "password": "Hello",
+          "status_id": "1",
+          "user_id": "1",
+          "username": "Testeri"
+        }
+      ],
+      "users": [
+        {
+          "address1": "Erkki Koiso-kanttilan Katu 45",
+          "address2": "",
+          "city": "1",
+          "country": "1",
+          "email": "test@user.com",
+          "firstname": "Test",
+          "gender": "",
+          "img_url_avatar": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/avatar.png",
+          "language": "1",
+          "lastname": "User",
+          "nationality": "1",
+          "region": "1",
+          "status_id": "1"
+        }
+      ]
+    }
+  },
+  "sinks": {
+    "5": {
+      "categories": [
+        "Food",
+        "Pharmacy",
+        "Fitness",
+        "Health",
+        "Finance",
+        "Insurance",
+        "Shopping"
+      ],
+      "commonConsents": [
+        "fa-hdd-o",
+        "fa-building",
+        "fa-diamond",
+        "fa-cc"
+      ],
+      "description": {
+        "desc_long": "The personal health record (PHR) is an electronic, lifelong resource of health information needed by individuals to make health decisions. Individuals own and manage the information in the PHR, which comes from healthcare providers and the individual. The PHR is maintained in a secure and private environment, with the individual determining rights of access. The PHR does not replace the legal record of any provider.",
+        "desc_short": "A personal health record (PHR) is a collection of health-related information that is documented and maintained by the individual it pertains to.",
+        "img_url_banner": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/phr-logo.png",
+        "img_url_logo": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/phr-logo.png",
+        "img_url_overview": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/phr-logo.png"
+      },
+      "labels": [
+        "new",
+        "popular"
+      ],
+      "name": "PHR",
+      "network": {
+        "data_api": "/api/v0.1/resource",
+        "ip_private": "127.0.0.1",
+        "ip_public": "127.0.0.1",
+        "port_api": "8087",
+        "port_http": "80",
+        "port_https": "443"
+      },
+      "user_accounts": [
+        {
+          "email": "test@user.com",
+          "password": "Hello",
+          "username": "testuser"
+        }
+      ]
+    },
+    "6": {
+      "categories": [
+        "Health.Diastolic-Blood-Pressure",
+        "Health.Systolic-Blood-Pressure",
+        "Health.Heart-Rate",
+        "Health.Sleep-efficiency",
+        "Health.Awakenings-count",
+        "Health.Minutes-asleep",
+        "Health.Minutes-awake",
+        "Health.Minutes-deep-sleep",
+        "Health.Minutes-in-bed",
+        "Health.Minutes-light-sleep",
+        "Health.Minutes-REM-sleep",
+        "Fitness.Weight"
+      ],
+      "commonConsents": [
+        "fa-hdd-o",
+        "fa-building",
+        "fa-diamond",
+        "fa-cc"
+      ],
+      "description": {
+        "desc_long": "Wellness Warehouse Engine service (W2E) is a personal data store (PDS) that allows its users to aggregate health and wellness related data from several personal data tracking services that collect data via sensors or apps. One of its key services is compatibility with MyData service authorization - users can easily manage secondary use of their W2E - collected data by other data processing services.",
+        "desc_short": "W2E is a Proxy and PDS that aggregates data from multiple popular health and wellness services for MyData authorization.",
+        "img_url_banner": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/w2e-logo.png",
+        "img_url_logo": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/w2e-logo.png",
+        "img_url_overview": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/w2e-logo.png"
+      },
+      "labels": [
+        "new",
+        "popular"
+      ],
+      "name": "W2E-Sink",
+      "network": {
+        "data_api": "/api/v0.1/resource",
+        "ip_private": "127.0.0.1",
+        "ip_public": "127.0.0.1",
+        "port_api": "8086",
+        "port_http": "80",
+        "port_https": "443"
+      },
+      "user_accounts": [
+        {
+          "email": "test@user.com",
+          "password": "Hello",
+          "username": "testuser"
+        }
+      ]
+    },
+    "7": {
+      "categories": [
+        "Biology.Gender",
+        "Biology.Age",
+        "Health.Family-History",
+        "Health.Genetic-Risks",
+        "Health.Smoking",
+        "Health.Diabetes",
+        "Health.Alcohol-Consumption",
+        "Health.Cholesterol-Total",
+        "Health.Cholesterol-HDL",
+        "Health.Medication-Chol",
+        "Health.Systolic-Blood-Pressure",
+        "Health.Medication-Blood-Pressure"
+      ],
+      "commonConsents": [
+        "fa-hdd-o",
+        "fa-building",
+        "fa-diamond",
+        "fa-cc"
+      ],
+      "description": {
+        "desc_long": "KardioKompassi is an online service developed by the Institute for Molecular Medicine Finland (FIMM) and the Finnish Red Cross Blood Service. With this service users can get information about their own personal risk for cardiovascular diseases. Combining lifestyle- and health- related information with a persons hereditary risk factors enables the comprehensive assessment of cardiovascular disease risks. With KardioKompassi citizens can better interpret and utilize their personal risk information. At this point, only participants of certain research projects can use the KardioKompassi service.",
+        "desc_short": "Kardiokompassi provides users cardiovascular risk information based on their genetic and health data.",
+        "img_url_banner": "http://178.62.244.150:81/assets/img/kardio_logo.png",
+        "img_url_logo": "http://178.62.244.150:81/assets/img/kardio_logo.png",
+        "img_url_overview": "http://178.62.244.150:81/assets/img/kardio_logo.png"
+      },
+      "labels": [
+        "new",
+        "popular"
+      ],
+      "name": "Kardiokompassi",
+      "network": {
+        "data_api": "/api/v0.1/resource",
+        "ip_private": "127.0.0.1",
+        "ip_public": "127.0.0.1",
+        "port_api": "8085",
+        "port_http": "80",
+        "port_https": "443"
+      },
+      "user_accounts": [
+        {
+          "email": "test@user.com",
+          "password": "Hello",
+          "username": "testuser"
         }
       ]
     }
   },
   "sources": {
     "1": {
-      "name": "Running Free",
-      "description": {
-        "desc_short": "DataSource based on Health and Fitness Data",
-        "desc_long": "Health is the level of functional or metabolic efficiency of a living organism. In humans it is the ability of individuals or communities to adapt and self-manage when facing physical, mental or social challenges. The World Health Organization (WHO) defined health in its broader sense in its 1948 constitution as a state of complete physical, mental, and social well-being and not merely the absence of disease or infirmity. (en.wikipedia.org/wiki/Health)",
-        "img_url_logo": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Jogging-logo.png",
-        "img_url_banner": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Jogging-logo.png",
-        "img_url_overview": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Jogging-logo.png"
-      },
       "categories": [
         "Health.Diastolic-Blood-Pressure",
         "Health.Systolic-Blood-Pressure",
@@ -127,56 +274,20 @@
         "Fitness.Soft-exercise"
       ],
       "category_details": {
-        "Health.Diastolic-Blood-Pressure": {
-          "unit": "mmHg"
-        },
-        "Health.Systolic-Blood-Pressure": {
-          "unit": "mmHg"
-        },
-        "Health.Heart-Rate": {
-          "unit": "bpm"
-        },
-        "Health.Sleep-efficiency": {
-          "unit": "%"
-        },
-        "Health.Minutes-deep-sleep": {
-          "unit": "minutes"
-        },
-        "Health.Awakenings-count": {
-          "unit": "count"
-        },
-        "Health.Minutes-asleep": {
-          "unit": "minutes"
-        },
-        "Health.Minutes-awake": {
-          "unit": "minutes"
-        },
-        "Health.Minutes-in-bed": {
-          "unit": "minutes"
-        },
-        "Health.Minutes-light-sleep": {
-          "unit": "minutes"
-        },
-        "Health.Minutes-REM-sleep": {
-          "unit": "minutes"
-        },
-        "Fitness.Weight": {
-          "unit": "kg"
+        "Fitness.Calories-burned": {
+          "unit": "kcal"
         },
         "Fitness.Distance-travelled": {
           "unit": "meters"
         },
-        "Fitness.Calories-burned": {
-          "unit": "kcal"
+        "Fitness.Elevation-travelled": {
+          "unit": "meters"
         },
         "Fitness.Fat-free": {
           "unit": "%"
         },
         "Fitness.Fat-mass": {
           "unit": "kg"
-        },
-        "Fitness.Elevation-travelled": {
-          "unit": "meters"
         },
         "Fitness.Intense-exercise": {
           "unit": "seconds"
@@ -189,43 +300,79 @@
         },
         "Fitness.Soft-exercise": {
           "unit": "seconds"
+        },
+        "Fitness.Weight": {
+          "unit": "kg"
+        },
+        "Health.Awakenings-count": {
+          "unit": "count"
+        },
+        "Health.Diastolic-Blood-Pressure": {
+          "unit": "mmHg"
+        },
+        "Health.Heart-Rate": {
+          "unit": "bpm"
+        },
+        "Health.Minutes-REM-sleep": {
+          "unit": "minutes"
+        },
+        "Health.Minutes-asleep": {
+          "unit": "minutes"
+        },
+        "Health.Minutes-awake": {
+          "unit": "minutes"
+        },
+        "Health.Minutes-deep-sleep": {
+          "unit": "minutes"
+        },
+        "Health.Minutes-in-bed": {
+          "unit": "minutes"
+        },
+        "Health.Minutes-light-sleep": {
+          "unit": "minutes"
+        },
+        "Health.Sleep-efficiency": {
+          "unit": "%"
+        },
+        "Health.Systolic-Blood-Pressure": {
+          "unit": "mmHg"
         }
       },
-      "labels": [
-        "new",
-        "popular"
-      ],
       "commonConsents": [
         "fa-hdd-o",
         "fa-building",
         "fa-diamond",
         "fa-cc"
       ],
+      "description": {
+        "desc_long": "Health is the level of functional or metabolic efficiency of a living organism. In humans it is the ability of individuals or communities to adapt and self-manage when facing physical, mental or social challenges. The World Health Organization (WHO) defined health in its broader sense in its 1948 constitution as a state of complete physical, mental, and social well-being and not merely the absence of disease or infirmity. (en.wikipedia.org/wiki/Health)",
+        "desc_short": "DataSource based on Health and Fitness Data",
+        "img_url_banner": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Jogging-logo.png",
+        "img_url_logo": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Jogging-logo.png",
+        "img_url_overview": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Jogging-logo.png"
+      },
+      "labels": [
+        "new",
+        "popular"
+      ],
+      "name": "Running Free",
       "network": {
-        "ip_public": "178.62.229.148",
-        "ip_private": "10.133.57.251",
-        "port_api": "10001",
+        "data_api": "/api/v0.1/resource",
+        "ip_private": "127.0.0.1",
+        "ip_public": "127.0.0.1",
+        "port_api": "8093",
         "port_http": "80",
-        "port_https": "443",
-        "data_api": "/api/v0.1/resource"
+        "port_https": "443"
       },
       "user_accounts": [
         {
-          "username": "testuser",
+          "email": "test@user.com",
           "password": "Hello",
-          "email": "test@user.com"
+          "username": "testuser"
         }
       ]
     },
     "2": {
-      "name": "MyLocation",
-      "description": {
-        "desc_short": "DataSource based on Location Data",
-        "desc_long": "The terms location and place in geography are used to identify a point or an area on the Earth's surface or elsewhere. The term location generally implies a higher degree of certainty than place, which often indicates an entity with an ambiguous boundary, relying more on human/social attributes of place identity and sense of place than on geometry. The distinction between space and place is considered a central concern of geography, and has been addressed by prominent scholars such as Yi-Fu Tuan and John Agnew. (en.wikipedia.org/wiki/Location_(geography))",
-        "img_url_logo": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Location-logo.png",
-        "img_url_banner": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Location-logo.png",
-        "img_url_overview": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Location-logo.png"
-      },
       "categories": [
         "Fitness.Location.Biking",
         "Fitness.Location.Hiking"
@@ -238,41 +385,41 @@
           "unit": "meters"
         }
       },
-      "labels": [
-        "new",
-        "popular"
-      ],
       "commonConsents": [
         "fa-hdd-o",
         "fa-building",
         "fa-diamond",
         "fa-cc"
       ],
+      "description": {
+        "desc_long": "The terms location and place in geography are used to identify a point or an area on the Earth's surface or elsewhere. The term location generally implies a higher degree of certainty than place, which often indicates an entity with an ambiguous boundary, relying more on human/social attributes of place identity and sense of place than on geometry. The distinction between space and place is considered a central concern of geography, and has been addressed by prominent scholars such as Yi-Fu Tuan and John Agnew. (en.wikipedia.org/wiki/Location_(geography))",
+        "desc_short": "DataSource based on Location Data",
+        "img_url_banner": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Location-logo.png",
+        "img_url_logo": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Location-logo.png",
+        "img_url_overview": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Location-logo.png"
+      },
+      "labels": [
+        "new",
+        "popular"
+      ],
+      "name": "MyLocation",
       "network": {
-        "ip_public": "95.85.39.236",
-        "ip_private": "10.129.36.186",
-        "port_api": "10002",
+        "data_api": "/api/v0.1/resource",
+        "ip_private": "127.0.0.1",
+        "ip_public": "127.0.0.1",
+        "port_api": "8092",
         "port_http": "80",
-        "port_https": "443",
-        "data_api": "/api/v0.1/resource"
+        "port_https": "443"
       },
       "user_accounts": [
         {
-          "username": "testuser",
+          "email": "test@user.com",
           "password": "Hello",
-          "email": "test@user.com"
+          "username": "testuser"
         }
       ]
     },
     "3": {
-      "name": "Sesko",
-      "description": {
-        "desc_short": "DataSource based on Shopping Data",
-        "desc_long": "A retail or a shop is a business that presents a selection of goods and offers to trade or sell them to customers for money or other goods. Shopping is an activity in which a customer browses the available goods or services presented by one or more retailers with the intent to purchase a suitable selection of them. In some contexts it may be considered a leisure activity as well as an economic one. (en.wikipedia.org/wiki/Shopping)",
-        "img_url_logo": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Shopping-logo.png",
-        "img_url_banner": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Shopping-logo.png",
-        "img_url_overview": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Shopping-logo.png"
-      },
       "categories": [
         "Shopping.Consumer-goods.Adhesives",
         "Shopping.Consumer-goods.Batteries",
@@ -471,16 +618,19 @@
         "Shopping.Consumer-goods.Book-supplies": {
           "unit": "euro"
         },
-        "Shopping.Consumer-goods.Bottle-envelopes": {
+        "Shopping.Consumer-goods.Bottle-Returns": {
           "unit": "euro"
         },
-        "Shopping.Consumer-goods.Bottle-Returns": {
+        "Shopping.Consumer-goods.Bottle-envelopes": {
           "unit": "euro"
         },
         "Shopping.Consumer-goods.Cleaning-Machine": {
           "unit": "euro"
         },
         "Shopping.Consumer-goods.Cleaning-Supplies": {
+          "unit": "euro"
+        },
+        "Shopping.Consumer-goods.Clothes-Hangers": {
           "unit": "euro"
         },
         "Shopping.Consumer-goods.Clothes.Ladies.Cloth-sweaters": {
@@ -528,9 +678,6 @@
         "Shopping.Consumer-goods.Clothes.Sportswear.Others": {
           "unit": "euro"
         },
-        "Shopping.Consumer-goods.Clothes-Hangers": {
-          "unit": "euro"
-        },
         "Shopping.Consumer-goods.Cooking-utensils": {
           "unit": "euro"
         },
@@ -552,10 +699,10 @@
         "Shopping.Consumer-goods.Freezing-supplies": {
           "unit": "euro"
         },
-        "Shopping.Consumer-goods.Home-decorative-accessories": {
+        "Shopping.Consumer-goods.HWA": {
           "unit": "euro"
         },
-        "Shopping.Consumer-goods.HWA": {
+        "Shopping.Consumer-goods.Home-decorative-accessories": {
           "unit": "euro"
         },
         "Shopping.Consumer-goods.Laundry-Detergent": {
@@ -723,6 +870,9 @@
         "Shopping.Groceries.Fruits.Apples": {
           "unit": "euro"
         },
+        "Shopping.Groceries.Fruits.Bananas": {
+          "unit": "euro"
+        },
         "Shopping.Groceries.Fruits.Other": {
           "unit": "euro"
         },
@@ -730,9 +880,6 @@
           "unit": "euro"
         },
         "Shopping.Groceries.Fruits.Pome-fruits": {
-          "unit": "euro"
-        },
-        "Shopping.Groceries.Fruits.Bananas": {
           "unit": "euro"
         },
         "Shopping.Groceries.Garden-Berries-And-Rhubarb": {
@@ -885,10 +1032,10 @@
         "Shopping.Groceries.Vegetables": {
           "unit": "euro"
         },
-        "Shopping.Groceries.Wheat-Flours": {
+        "Shopping.Groceries.Vinegars": {
           "unit": "euro"
         },
-        "Shopping.Groceries.Vinegars": {
+        "Shopping.Groceries.Wheat-Flours": {
           "unit": "euro"
         },
         "Shopping.Groceries.Wines-And-Siders": {
@@ -937,42 +1084,42 @@
           "unit": "euro"
         }
       },
-      "labels": [
-        "new",
-        "popular"
-      ],
       "commonConsents": [
         "fa-hdd-o",
         "fa-building",
         "fa-diamond",
         "fa-cc"
       ],
+      "description": {
+        "desc_long": "A retail or a shop is a business that presents a selection of goods and offers to trade or sell them to customers for money or other goods. Shopping is an activity in which a customer browses the available goods or services presented by one or more retailers with the intent to purchase a suitable selection of them. In some contexts it may be considered a leisure activity as well as an economic one. (en.wikipedia.org/wiki/Shopping)",
+        "desc_short": "DataSource based on Shopping Data",
+        "img_url_banner": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Shopping-logo.png",
+        "img_url_logo": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Shopping-logo.png",
+        "img_url_overview": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/DataSource-Shopping-logo.png"
+      },
+      "labels": [
+        "new",
+        "popular"
+      ],
+      "name": "Sesko",
       "network": {
-        "ip_public": "178.62.229.148",
-        "ip_private": "10.133.57.251",
-        "port_api": "10003",
+        "data_api": "/api/v0.1/resource",
+        "ip_private": "127.0.0.1",
+        "ip_public": "127.0.0.1",
+        "port_api": "8091",
         "port_http": "80",
-        "port_https": "443",
-        "data_api": "/api/v0.1/resource"
+        "port_https": "443"
       },
       "user_accounts": [
         {
-          "username": "testuser",
+          "email": "test@user.com",
           "password": "Hello",
-          "email": "test@user.com"
+          "username": "testuser"
         }
       ]
     },
     "4": {
-      "name": "W2E-Source",
-      "description": {
-        "desc_short": "W2E is a Proxy and PDS that aggregates data from multiple popular health and wellness services for MyData authorization.",
-        "desc_long": "Wellness Warehouse Engine service (W2E) is a personal data store (PDS) that allows its users to aggregate health and wellness related data from several personal data tracking services that collect data via sensors or apps. One of its key services is compatibility with MyData service authorization - users can easily manage secondary use of their W2E - collected data by other data processing services.",
-        "img_url_logo": "http://77g061.com1.z0.glb.clouddn.com/dhrDataSink-w2e-logo.png",
-        "img_url_banner": "http://77g061.com1.z0.glb.clouddn.com/dhrDataSink-w2e-logo.png",
-        "img_url_overview": "http://77g061.com1.z0.glb.clouddn.com/dhrDataSink-w2e-logo.png"
-      },
- "categories": [
+      "categories": [
         "Health.Diastolic-Blood-Pressure",
         "Health.Systolic-Blood-Pressure",
         "Health.Heart-Rate",
@@ -987,28 +1134,28 @@
         "Fitness.Weight"
       ],
       "category_details": {
-        "Health.Diastolic-Blood-Pressure": {
-          "unit": "mmHg"
+        "Fitness.Weight": {
+          "unit": "kg"
         },
-        "Health.Systolic-Blood-Pressure": {
+        "Health.Awakenings-count": {
+          "unit": "count"
+        },
+        "Health.Diastolic-Blood-Pressure": {
           "unit": "mmHg"
         },
         "Health.Heart-Rate": {
           "unit": "bpm"
         },
-        "Health.Sleep-efficiency": {
-          "unit": "%"
-        },
-        "Health.Minutes-deep-sleep": {
+        "Health.Minutes-REM-sleep": {
           "unit": "minutes"
-        },
-        "Health.Awakenings-count": {
-          "unit": "count"
         },
         "Health.Minutes-asleep": {
           "unit": "minutes"
         },
         "Health.Minutes-awake": {
+          "unit": "minutes"
+        },
+        "Health.Minutes-deep-sleep": {
           "unit": "minutes"
         },
         "Health.Minutes-in-bed": {
@@ -1017,194 +1164,48 @@
         "Health.Minutes-light-sleep": {
           "unit": "minutes"
         },
-        "Health.Minutes-REM-sleep": {
-          "unit": "minutes"
+        "Health.Sleep-efficiency": {
+          "unit": "%"
         },
-        "Fitness.Weight": {
-          "unit": "kg"
+        "Health.Systolic-Blood-Pressure": {
+          "unit": "mmHg"
         }
       },
-      "labels": [
-        "new",
-        "popular"
-      ],
       "commonConsents": [
         "fa-hdd-o",
         "fa-building",
         "fa-diamond",
         "fa-cc"
       ],
-      "network": {
-        "ip_public": "95.85.39.236",
-        "ip_private": "10.129.36.186",
-        "port_api": "10004",
-        "port_http": "80",
-        "port_https": "443",
-        "data_api": "/api/v0.1/resource"
-      },
-      "user_accounts": [
-        {
-          "username": "testuser",
-          "password": "Hello",
-          "email": "test@user.com"
-        }
-      ]
-    }
-  },
-  "sinks": {
-    "5": {
-      "name": "PHR",
       "description": {
-        "desc_short": "A personal health record (PHR) is a collection of health-related information that is documented and maintained by the individual it pertains to.",
-        "desc_long": "The personal health record (PHR) is an electronic, lifelong resource of health information needed by individuals to make health decisions. Individuals own and manage the information in the PHR, which comes from healthcare providers and the individual. The PHR is maintained in a secure and private environment, with the individual determining rights of access. The PHR does not replace the legal record of any provider.",
-        "img_url_logo": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/phr-logo.png",
-        "img_url_banner": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/phr-logo.png",
-        "img_url_overview": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/phr-logo.png"
-      },
-      "categories": [
-        "Food",
-        "Pharmacy",
-        "Fitness",
-        "Health",
-        "Finance",
-        "Insurance"
-      ],
-      "labels": [
-        "new",
-        "popular"
-      ],
-      "commonConsents": [
-        "fa-hdd-o",
-        "fa-building",
-        "fa-diamond",
-        "fa-cc"
-      ],
-      "network": {
-        "ip_public": "95.85.39.236",
-        "ip_private": "10.129.36.186",
-        "port_api": "20001",
-        "port_http": "80",
-        "port_https": "443",
-        "data_api": "/api/v0.1/resource"
-      },
-      "user_accounts": [
-        {
-          "username": "testuser",
-          "password": "Hello",
-          "email": "test@user.com"
-        }
-      ]
-    },
-    "6": {
-      "name": "W2E-Sink",
-      "description": {
-        "desc_short": "W2E is a Proxy and PDS that aggregates data from multiple popular health and wellness services for MyData authorization.",
         "desc_long": "Wellness Warehouse Engine service (W2E) is a personal data store (PDS) that allows its users to aggregate health and wellness related data from several personal data tracking services that collect data via sensors or apps. One of its key services is compatibility with MyData service authorization - users can easily manage secondary use of their W2E - collected data by other data processing services.",
-        "img_url_logo": "http://77g061.com1.z0.glb.clouddn.com/dhrDataSink-w2e-logo.png",
-        "img_url_banner": "http://77g061.com1.z0.glb.clouddn.com/dhrDataSink-w2e-logo.png",
-        "img_url_overview": "http://77g061.com1.z0.glb.clouddn.com/dhrDataSink-w2e-logo.png"
+        "desc_short": "W2E is a Proxy and PDS that aggregates data from multiple popular health and wellness services for MyData authorization.",
+        "img_url_banner": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/w2e-logo.png",
+        "img_url_logo": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/w2e-logo.png",
+        "img_url_overview": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/w2e-logo.png"
       },
-      "categories": [
-        "Health.Diastolic-Blood-Pressure",
-        "Health.Systolic-Blood-Pressure",
-        "Health.Heart-Rate",
-        "Health.Sleep-efficiency",
-        "Health.Awakenings-count",
-        "Health.Minutes-asleep",
-        "Health.Minutes-awake",
-        "Health.Minutes-deep-sleep",
-        "Health.Minutes-in-bed",
-        "Health.Minutes-light-sleep",
-        "Health.Minutes-REM-sleep",
-        "Fitness.Weight"
-      ],
       "labels": [
         "new",
         "popular"
       ],
-      "commonConsents": [
-        "fa-hdd-o",
-        "fa-building",
-        "fa-diamond",
-        "fa-cc"
-      ],
+      "name": "W2E-Source",
       "network": {
-        "ip_public": "95.85.39.236",
-        "ip_private": "10.129.36.186",
-        "port_api": "20003",
+        "data_api": "/api/v0.1/resource",
+        "ip_private": "127.0.0.1",
+        "ip_public": "127.0.0.1",
+        "port_api": "8090",
         "port_http": "80",
-        "port_https": "443",
-        "data_api": "/api/v0.1/resource"
+        "port_https": "443"
       },
       "user_accounts": [
         {
-          "username": "testuser",
+          "email": "test@user.com",
           "password": "Hello",
-          "email": "test@user.com"
-        }
-      ]
-    },
-    "7": {
-      "name": "Kardiokompassi",
-      "description": {
-        "desc_short": "Kardiokompassi provides users cardiovascular risk information based on their genetic and health data.",
-        "desc_long": "KardioKompassi is an online service developed by the Institute for Molecular Medicine Finland (FIMM) and the Finnish Red Cross Blood Service. With this service users can get information about their own personal risk for cardiovascular diseases. Combining lifestyle- and health- related information with a persons hereditary risk factors enables the comprehensive assessment of cardiovascular disease risks. With KardioKompassi citizens can better interpret and utilize their personal risk information. At this point, only participants of certain research projects can use the KardioKompassi service.",
-        "img_url_logo": "http://178.62.244.150:81/assets/img/kardio_logo.png",
-        "img_url_banner": "http://178.62.244.150:81/assets/img/kardio_logo.png",
-        "img_url_overview": "http://178.62.244.150:81/assets/img/kardio_logo.png"
-      },
-      "categories": [
-        "Biology.Gender",
-        "Biology.Age",
-        "Health.Family-History",
-        "Health.Genetic-Risks",
-        "Health.Smoking",
-        "Health.Diabetes",
-        "Health.Alcohol-Consumption",
-        "Health.Cholesterol-Total",
-        "Health.Cholesterol-HDL",
-        "Health.Medication-Chol", 
-        "Health.Systolic-Blood-Pressure", 
-        "Health.Medication-Blood-Pressure"
-      ],
-      "labels": [
-        "new",
-        "popular"
-      ],
-      "commonConsents": [
-        "fa-hdd-o",
-        "fa-building",
-        "fa-diamond",
-        "fa-cc"
-      ],
-      "network": {
-        "ip_public": "0.0.0.0",
-        "ip_private": "10.129.36.186",
-        "port_api": "20002",
-        "port_http": "80",
-        "port_https": "443",
-        "data_api": "/api/v0.1/resource"
-      },
-      "user_accounts": [
-        {
-          "username": "testuser",
-          "password": "Hello",
-          "email": "test@user.com"
+          "username": "testuser"
         }
       ]
     }
   },
-  "data_licenses": [
-    "Research-use.Internal-use",
-    "Research-use.External-partners",
-    "Research-use.Anonymizes-data",
-    "Development-use.Internal-use",
-    "Development-use.External-partners",
-    "Sales-and-Marketing",
-    "Advertising",
-    "Marketing-Partners",
-    "Resale"
-  ],
   "statuses": [
     "active",
     "paused",
