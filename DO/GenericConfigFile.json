@@ -137,7 +137,7 @@
         "data_api": "/api/v0.1/resource",
         "ip_private": "127.0.0.1",
         "ip_public": "127.0.0.1",
-        "port_api": "8087",
+        "port_api": "20001",
         "port_http": "80",
         "port_https": "443"
       },
@@ -186,7 +186,7 @@
         "data_api": "/api/v0.1/resource",
         "ip_private": "127.0.0.1",
         "ip_public": "127.0.0.1",
-        "port_api": "8086",
+        "port_api": "20003",
         "port_http": "80",
         "port_https": "443"
       },
@@ -235,7 +235,7 @@
         "data_api": "/api/v0.1/resource",
         "ip_private": "127.0.0.1",
         "ip_public": "127.0.0.1",
-        "port_api": "8085",
+        "port_api": "20002",
         "port_http": "80",
         "port_https": "443"
       },
@@ -360,7 +360,7 @@
         "data_api": "/api/v0.1/resource",
         "ip_private": "127.0.0.1",
         "ip_public": "127.0.0.1",
-        "port_api": "8093",
+        "port_api": "10001",
         "port_http": "80",
         "port_https": "443"
       },
@@ -407,7 +407,7 @@
         "data_api": "/api/v0.1/resource",
         "ip_private": "127.0.0.1",
         "ip_public": "127.0.0.1",
-        "port_api": "8092",
+        "port_api": "10002",
         "port_http": "80",
         "port_https": "443"
       },
@@ -1106,7 +1106,7 @@
         "data_api": "/api/v0.1/resource",
         "ip_private": "127.0.0.1",
         "ip_public": "127.0.0.1",
-        "port_api": "8091",
+        "port_api": "10001",
         "port_http": "80",
         "port_https": "443"
       },
@@ -1193,7 +1193,7 @@
         "data_api": "/api/v0.1/resource",
         "ip_private": "127.0.0.1",
         "ip_public": "127.0.0.1",
-        "port_api": "8090",
+        "port_api": "20001",
         "port_http": "80",
         "port_https": "443"
       },
