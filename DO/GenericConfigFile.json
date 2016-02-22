@@ -1067,7 +1067,8 @@
         "Fitness",
         "Health",
         "Finance",
-        "Insurance"
+        "Insurance",
+        "Shopping"
       ],
       "labels": [
         "new",
@@ -1131,7 +1132,7 @@
       "network": {
         "ip_public": "95.85.39.236",
         "ip_private": "10.129.36.186",
-        "port_api": "20002",
+        "port_api": "20003",
         "port_http": "80",
         "port_https": "443",
         "data_api": "/api/v0.1/resource"
