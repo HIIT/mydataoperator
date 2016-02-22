@@ -15,7 +15,7 @@ Docker Image is the preferred way to test this POC.
 
  [Docker] (https://www.docker.com/)
  
-### 1. Download docker images
+### 1. Build docker image
 You need the following files that should be shipped in docker_setup.zip:
 
 ```
