@@ -17,8 +17,8 @@
       "name": "DataOperator",
       "desc": "The DataOperator",
       "network": {
-        "ip_public": "178.62.244.150",
-        "ip_private": "10.133.57.249",
+        "ip_public": "127.0.0.1",
+        "ip_private": "127.0.0.1",
         "port_api": "8080",
         "port_http": "80",
         "port_https": "443"
@@ -202,8 +202,8 @@
         "fa-cc"
       ],
       "network": {
-        "ip_public": "178.62.229.148",
-        "ip_private": "10.133.57.251",
+        "ip_public": "127.0.0.1",
+        "ip_private": "127.0.0.1",
         "port_api": "10001",
         "port_http": "80",
         "port_https": "443",
@@ -249,8 +249,8 @@
         "fa-cc"
       ],
       "network": {
-        "ip_public": "95.85.39.236",
-        "ip_private": "10.129.36.186",
+        "ip_public": "127.0.0.1",
+        "ip_private": "127.0.0.1",
         "port_api": "10002",
         "port_http": "80",
         "port_https": "443",
@@ -948,8 +948,8 @@
         "fa-cc"
       ],
       "network": {
-        "ip_public": "178.62.229.148",
-        "ip_private": "10.133.57.251",
+        "ip_public": "127.0.0.1",
+        "ip_private": "127.0.0.1",
         "port_api": "10003",
         "port_http": "80",
         "port_https": "443",
@@ -1035,8 +1035,8 @@
         "fa-cc"
       ],
       "network": {
-        "ip_public": "95.85.39.236",
-        "ip_private": "10.129.36.186",
+        "ip_public": "127.0.0.1",
+        "ip_private": "127.0.0.1",
         "port_api": "10004",
         "port_http": "80",
         "port_https": "443",
@@ -1081,8 +1081,8 @@
         "fa-cc"
       ],
       "network": {
-        "ip_public": "95.85.39.236",
-        "ip_private": "10.129.36.186",
+        "ip_public": "127.0.0.1",
+        "ip_private": "127.0.0.1",
         "port_api": "20001",
         "port_http": "80",
         "port_https": "443",
@@ -1123,8 +1123,8 @@
         "fa-cc"
       ],
       "network": {
-        "ip_public": "95.85.39.236",
-        "ip_private": "10.129.36.186",
+        "ip_public": "127.0.0.1",
+        "ip_private": "127.0.0.1",
         "port_api": "20003",
         "port_http": "80",
         "port_https": "443",
