@@ -53,7 +53,7 @@
           "country": "1",
           "nationality": "1",
           "language": "1",
-          "img_url_avatar": "http://127.0.0.1:8081/assets/img/services/avatar.png"
+          "img_url_avatar": "http://127.0.0.1:80/assets/img/icons/mydata-avatar.png"
         }
       ],
       "cities": [
@@ -99,9 +99,9 @@
       "description": {
         "desc_long": "Running Free is lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus eget urna eu semper. Suspendisse ac fringilla sapien. Aliquam id sem nulla. Phasellus lobortis dolor magna, sed scelerisque ex vehicula a. Integer non posuere turpis. Sed lobortis ante massa, sed dictum mi maximus id.",
         "desc_short": "Running Free is lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dignissim.",
-        "img_url_banner": "http://127.0.0.1:8081/assets/img/services/RunningFree.png",
-        "img_url_logo": "http://127.0.0.1:8081/assets/img/services/RunningFree.png",
-        "img_url_overview": "http://127.0.0.1:8081/assets/img/services/RunningFree.png"
+        "img_url_banner": "http://127.0.0.1:80/assets/img/services/RunningFree.png",
+        "img_url_logo": "http://127.0.0.1:80/assets/img/services/RunningFree.png",
+        "img_url_overview": "http://127.0.0.1:80/assets/img/services/RunningFree.png"
       },
       "categories": [
         "Health.Diastolic-Blood-Pressure",
@@ -222,9 +222,9 @@
       "description": {
         "desc_long": "MyLocation is orem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus eget urna eu semper. Suspendisse ac fringilla sapien. Aliquam id sem nulla. Phasellus lobortis dolor magna, sed scelerisque ex vehicula a. Integer non posuere turpis. Sed lobortis ante massa, sed dictum mi maximus id.",
         "desc_short": "MyLocation is orem ipsum dolor sit amet, consectetur adipiscing elit. Proin dignissim.",
-        "img_url_banner": "http://127.0.0.1:8081/assets/img/services/myLocation.png",
-        "img_url_logo": "http://127.0.0.1:8081/assets/img/services/myLocation.png",
-        "img_url_overview": "http://127.0.0.1:8081/assets/img/services/myLocation.png"
+        "img_url_banner": "http://127.0.0.1:80/assets/img/services/myLocation.png",
+        "img_url_logo": "http://127.0.0.1:80/assets/img/services/myLocation.png",
+        "img_url_overview": "http://127.0.0.1:80/assets/img/services/myLocation.png"
       },
       "categories": [
         "Fitness.Location.Biking",
@@ -269,9 +269,9 @@
       "description": {
         "desc_long": "Sesko is lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus eget urna eu semper. Suspendisse ac fringilla sapien. Aliquam id sem nulla. Phasellus lobortis dolor magna, sed scelerisque ex vehicula a. Integer non posuere turpis. Sed lobortis ante massa, sed dictum mi maximus id.",
         "desc_short": "Sesko is lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dignissim.",
-        "img_url_banner": "http://127.0.0.1:8081/assets/img/services/sesko-logo.png",
-        "img_url_logo": "http://127.0.0.1:8081/assets/img/services/sesko-logo.png",
-        "img_url_overview": "http://127.0.0.1:8081/assets/img/services/sesko-logo.png"
+        "img_url_banner": "http://127.0.0.1:80/assets/img/services/sesko-logo.png",
+        "img_url_logo": "http://127.0.0.1:80/assets/img/services/sesko-logo.png",
+        "img_url_overview": "http://127.0.0.1:80/assets/img/services/sesko-logo.png"
       },
       "categories": [
         "Shopping.Consumer-goods.Adhesives",
@@ -968,9 +968,9 @@
       "description": {
         "desc_long": "Sport-Welness-Health Center is lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus eget urna eu semper. Suspendisse ac fringilla sapien. Aliquam id sem nulla. Phasellus lobortis dolor magna, sed scelerisque ex vehicula a. Integer non posuere turpis. Sed lobortis ante massa, sed dictum mi maximus id.",
         "desc_short": "Sport-Welness-Health Center is lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dignissim.",
-        "img_url_banner": "http://127.0.0.1:8081/assets/img/services/sportWellnessHealth.png",
-        "img_url_logo": "http://127.0.0.1:8081/assets/img/services/sportWellnessHealth.png",
-        "img_url_overview": "http://127.0.0.1:8081/assets/img/services/sportWellnessHealth.png"
+        "img_url_banner": "http://127.0.0.1:80/assets/img/services/sportWellnessHealth.png",
+        "img_url_logo": "http://127.0.0.1:80/assets/img/services/sportWellnessHealth.png",
+        "img_url_overview": "http://127.0.0.1:80/assets/img/services/sportWellnessHealth.png"
       },
  "categories": [
         "Health.Diastolic-Blood-Pressure",
@@ -1057,9 +1057,9 @@
       "description": {
         "desc_long": "PHR is lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus eget urna eu semper. Suspendisse ac fringilla sapien. Aliquam id sem nulla. Phasellus lobortis dolor magna, sed scelerisque ex vehicula a. Integer non posuere turpis. Sed lobortis ante massa, sed dictum mi maximus id.",
         "desc_short": "PHR is lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dignissim.",
-        "img_url_banner": "http://127.0.0.1:8081/assets/img/services/phr-logo.png",
-        "img_url_logo": "http://127.0.0.1:8081/assets/img/services/phr-logo.png",
-        "img_url_overview": "http://127.0.0.1:8081/assets/img/services/phr-logo.png"
+        "img_url_banner": "http://127.0.0.1:80/assets/img/services/phr-logo.png",
+        "img_url_logo": "http://127.0.0.1:80/assets/img/services/phr-logo.png",
+        "img_url_overview": "http://127.0.0.1:80/assets/img/services/phr-logo.png"
       },
       "categories": [
         "Food",
@@ -1101,9 +1101,9 @@
       "description": {
         "desc_long": "Sport-Welness-Health Center is lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus eget urna eu semper. Suspendisse ac fringilla sapien. Aliquam id sem nulla. Phasellus lobortis dolor magna, sed scelerisque ex vehicula a. Integer non posuere turpis. Sed lobortis ante massa, sed dictum mi maximus id.",
         "desc_short": "Sport-Welness-Health Center is lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dignissim.",
-        "img_url_banner": "http://127.0.0.1:8081/assets/img/services/sportWellnessHealth.png",
-        "img_url_logo": "http://127.0.0.1:8081/assets/img/services/sportWellnessHealth.png",
-        "img_url_overview": "http://127.0.0.1:8081/assets/img/services/sportWellnessHealth.png"
+        "img_url_banner": "http://127.0.0.1:80/assets/img/services/sportWellnessHealth.png",
+        "img_url_logo": "http://127.0.0.1:80/assets/img/services/sportWellnessHealth.png",
+        "img_url_overview": "http://127.0.0.1:80/assets/img/services/sportWellnessHealth.png"
       },
       "categories": [
         "Food",
