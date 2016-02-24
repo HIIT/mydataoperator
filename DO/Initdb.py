@@ -162,7 +162,7 @@ class Test_editable:
                 "cities_id": city_id,
                 "languages_id": self.db.get_languages()[0].id,
                 "nationalities_id": self.db.get_nationalities()[0].id,
-                "img_url_avatar": "http://cc.oulu.fi/~jylikant/dhr/serviceIMGs/avatar.png"
+                "img_url_avatar": "http://127.0.0.1:8080/assets/img/services/avatar.png"
                 # TODO: Users need profile image.
             }
             self.db.debug(dumps(user, indent=3))
