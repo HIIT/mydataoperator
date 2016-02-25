@@ -1,0 +1,155 @@
+############################################################
+# Dockerfile to build DHR POC demo container images
+# Based on Ubuntu on BaseImage-Docker
+#  Author: Aleksi Palomaki
+# BasedOn: http://phusion.github.io/baseimage-docker/#solution
+############################################################
+
+#FROM phusion/baseimage:0.9.18
+FROM philcryer/min-wheezy:latest
+MAINTAINER DHR_Project
+# Use baseimage-docker's init system.
+CMD ["/sbin/my_init"]
+
+# Configure passwords
+ENV MYSQL_PASSWORD XmNT86Pi
+
+# Less spam thank you
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Update package list
+#RUN ping 8.8.8.8
+#RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf
+#RUN curl google.fi
+#RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+#RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main universe" > /etc/apt/sources.list
+RUN apt-get update
+
+#RUN apt-get -y install timedatectl
+
+# Configure Firewall
+#RUN ufw allow ssh
+#RUN ufw allow 443/tcp
+#RUN ufw allow 10000
+#RUN ufw enable
+
+# Set TimeZone to Helsinki
+#RUN timedatectl set-timezone Europe/Helsinki
+
+# Preconfigure installation options
+#RUN apt-get -y install debconf-i18n
+
+# Install stuff to keep my sanity
+#RUN apt-get -y install wget
+
+
+# MySQL
+#RUN echo 'mysql-server mysql-server/root_password password $MYSQL_PASSWORD' > configs.cfg
+#RUN echo 'mysql-server mysql-server/root_password_again password $MYSQL_PASSWORD' >> configs.cfg
+
+#PHPMyAdmin
+#RUN echo 'phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2' >> configs.cfg
+#RUN echo 'phpmyadmin phpmyadmin/dbconfig-install boolean true' >> configs.cfg
+#RUN echo 'phpmyadmin phpmyadmin/mysql/admin-user string root' >> configs.cfg
+#RUN echo 'phpmyadmin phpmyadmin/mysql/admin-pass password $MYSQL_PASSWORD' >> configs.cfg
+#RUN echo 'phpmyadmin phpmyadmin/mysql/app-pass password $MYSQL_PASSWORD' >> configs.cfg
+#RUN echo 'phpmyadmin phpmyadmin/app-password-confirm password $MYSQL_PASSWORD' >> configs.cfg
+#RUN debconf-set-selections configs.cfg
+
+#RUN apt-get -y install ntp
+RUN apt-get -y install build-essential
+RUN apt-get -y install curl wget
+RUN apt-get -y install libssl-dev
+RUN apt-get -y install libffi-dev
+RUN apt-get -y install python-dev
+RUN apt-get -y install python-pip
+
+# Install and configure Apache2
+RUN apt-get -y install apache2
+
+
+RUN apt-get -y install php5 libapache2-mod-php5
+RUN apt-get -y install mysql-server
+#RUN apt-get -y install phpmyadmin
+RUN apt-get -y install libmysqlclient-dev
+RUN apt-get -y install git
+#RUN apt-get -y install nginx
+
+# Install Python packages
+RUN pip install MySQL-python
+RUN pip install Flask
+RUN pip install Flask-SQLAlchemy
+RUN pip install flask-restful
+RUN pip install pyjwt
+RUN pip install passlib
+RUN pip install cryptography
+RUN pip install requests
+RUN pip install flask-cors
+RUN pip install flask-cache
+
+#RUN wget http://mirrors.kernel.org/ubuntu/pool/main/p/python-urllib3/python-urllib3_1.11-1_all.deb
+#RUN wget http://mirrors.kernel.org/ubuntu/pool/main/r/requests/python-requests_2.7.0-3_all.deb
+#RUN dpkg -i python-urllib3_1.11-1_all.deb
+#RUN dpkg -i python-requests_2.7.0-3_all.deb
+#RUN rm -f python-urllib3_1.11-1_all.deb
+#RUN rm -f python-requests_2.7.0-3_all.deb
+
+
+
+# Configure Apache2 and ensure mcrypt is loaded
+#RUN ls -alh /etc/service/apache2/
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
+ENV APACHE_LOCK_DIR /var/lock/apache2
+ENV APACHE_PID_FILE /var/run/apache2.pid
+RUN mkdir -p /etc/my_init.d
+ADD services.sh /etc/rc.local
+RUN chmod +x /etc/rc.local
+
+#RUN mkdir /etc/service/apache2
+#ADD http://pastebin.com/raw/TzD6uUjg /etc/service/apache2/run
+#RUN chmod +x /etc/service/apache2/run
+
+
+RUN php5enmod mcrypt
+
+# Fetch Project from Github
+WORKDIR ~/
+RUN echo Cloning
+RUN git clone https://github.com/dhrproject/mydataoperator.git
+RUN git clone https://github.com/dhrproject/mydatasink.git
+RUN git clone https://github.com/dhrproject/mydatasource.git
+
+RUN git clone https://github.com/dhrproject/mydataoperatorui.git
+
+# Set up config file to Apache2 so sink and source can fetch it (for now we can replace with nginx later..)
+RUN cp /~/mydataoperator/DO/GenericConfigFile.json /~/mydataoperatorui/DataOperator-UI/config
+RUN rm -rf /var/www
+RUN chown www-data -R /~/mydataoperatorui/DataOperator-UI/
+RUN ln -s /~/mydataoperatorui/DataOperator-UI/ /var/www
+
+
+# Setup DataOperator UI
+RUN sed -i 's/178.62.244.150:8080/127.0.0.1:10000/g' ./mydataoperatorui/DataOperator-UI/js/controllers.js
+
+# Set up log directories for sink and source
+RUN mkdir -p /~/mydatasource/DataSource/logs/
+RUN mkdir -p /~/mydatasink/DataSink/logs/
+
+# Set up mysql
+RUN /etc/init.d/mysql start; sleep 1; mysqladmin -u root password $MYSQL_PASSWORD
+
+ADD magic_fixes.sh magic_fixes.sh
+ADD run_all.sh run_all.sh
+# This fixes some setup scripts in sink(?)
+ENV HOSTNAME 127.0.0.1
+RUN sh magic_fixes.sh
+
+# Clear Mysql PW from env
+ENV MYSQL_PASSWORD expired
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN cp -R /usr/share/locale/en\@* /tmp/ && rm -rf /usr/share/locale/* && mv /tmp/en\@* /usr/share/locale/
+RUN rm -rf /var/cache/debconf/*-old && rm -rf /var/lib/apt/lists/* && rm -rf /usr/share/doc/*
