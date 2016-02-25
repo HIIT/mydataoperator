@@ -150,23 +150,12 @@ class Test_editable:
             region_id = self.db.get_regions_by_country(country_id)[0].id
             city_id = self.db.get_cities_by_region(region_id)[0].id
             self.db.debug("Adding Template User.")
-            user = {
-                "gender": "male",
-                "statuses_id": self.db.get_status_by_type("active").id,
-                "firstName": "Test",
-                "lastName": "User",
-                "email": "test@user.com",
-                "address1": "Testroad 392",
-                "countries_id": country_id,
-                "regions_id": region_id,
-                "cities_id": city_id,
-                "languages_id": self.db.get_languages()[0].id,
-                "nationalities_id": self.db.get_nationalities()[0].id,
-                "img_url_avatar": "http://127.0.0.1:8080/assets/img/services/avatar.png"
+            for user in self.db.config["operators"]["1"]["users"]:
+                self.db.debug(dumps(user, indent=3))
+                user_id = self.db.add_user(dumps(user))["id"]
+                
                 # TODO: Users need profile image.
-            }
-            self.db.debug(dumps(user, indent=3))
-            user_id = self.db.add_user(dumps(user))["id"]
+                
         except Exception as e:
             self.db.error("Something went wrong while adding template user: {}"
                           .format((error_handler(e, self.__class__.__name__))))
