@@ -42,17 +42,17 @@
       "users": [
         {
           "gender": "",
-          "status_id": "1",
-          "firstname": "Test",
-          "lastname": "User",
+          "statuses_id": "1",
+          "firstName": "Test",
+          "lastName": "User",
           "email": "test@user.com",
           "address1": "Example road 45",
           "address2": "",
-          "city": "1",
-          "region": "1",
-          "country": "1",
-          "nationality": "1",
-          "language": "1",
+          "cities_id": "1",
+          "regions_id": "1",
+          "countries_id": "1",
+          "nationalities_id": "1",
+          "languages_id": "1",
           "img_url_avatar": "http://127.0.0.1:80/assets/img/icons/mydata-avatar.png"
         }
       ],
