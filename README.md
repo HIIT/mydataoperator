@@ -16,7 +16,7 @@ Docker Image is the preferred way to test this POC.
  [Docker] (https://www.docker.com/)
  
 ### 1. Build docker image
-You need the following files that should be shipped in docker_setup.zip:
+You need the following files that are shipped in folder 'Docker' on this repository:
 
 ```
 DockerFile
@@ -28,7 +28,7 @@ services.sh
 Go to the folder with the files and run the following command
 
 ```
-docker build -f DockerFile  -t dhrtest .
+docker build --no-cache -f DockerFile  -t dhrtest .
 ```
 
 The command will take a while to run, you can now go get a new cup of coffee.
@@ -43,33 +43,23 @@ We will now call the ID above <ID>
 Now run:
 
 ```
-docker run docker run -p 127.0.0.1:80:80 -p 127.0.0.1:8080:8080 -i -t <ID> /etc/rc.local
+docker run -p 127.0.0.1:80:80 -p 127.0.0.1:8080:8080 -i -t <ID> /etc/rc.local
 ```
 
-This will start the container with bash.
+This will start the container including the PoC environment ending with bash prompt.
 
-When you see lines
-
-```
-[....] Starting web server: apache2apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.0.1 for ServerName
-. ok
-[ ok ] Starting MySQL database server: mysqld ..
-[info] Checking for tables which need an upgrade, are corrupt or were
-not closed cleanly..
-```
-
-The container is ready and you can press Enter to get clean prompt, then type
+When you see lines:
 
 ```
-sh run_all.sh
+Finished starting up the PoC environment!
+root@127:/~#
 ```
-
-The command will start up the testing environment and can take several seconds to complete.
+The container is ready and PoC environment running.
 Once this has been done you can press Ctrl+P+Q to detach the container without closing it.
 At this point the Testing Environment is available on localhost.
 
 Everything should running , you can visit
-[http://127.0.0.1:80](http://127.0.0.1:80) to check it.
+[http://127.0.0.1/](http://127.0.0.1/) to check it.
 
 
 ## DataOperator Backend
