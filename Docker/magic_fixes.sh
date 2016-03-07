@@ -10,16 +10,8 @@ find ./mydataoperatorui/ -type f -exec     sed -i 's/127.0.0.1:10000/'"$EXTERNAL
 find ./mydataoperatorui/ -type f -exec     sed -i 's/127.0.0.1:8080/'"$EXTERNAL_IP"':8080/g' {} +
 find ./mydataoperatorui/ -type f -exec     sed -i 's_127.0.0.1/assets_'"$EXTERNAL_IP"'/assets_g' {} +
 
-find ./mydataoperator -type f -exec     sed -i 's/95.85.39.236/127.0.0.1/g' {} +
-find ./mydataoperator -type f -exec     sed -i 's/178.62.229.148/127.0.0.1/g' {} +
-find ./mydataoperator -type f -exec     sed -i 's/178.62.244.150/127.0.0.1/g' {} +
 sed -i 's_127.0.0.1:80/assets_'"$EXTERNAL_IP"'/assets_g' ./mydataoperator/DO/GenericConfigFile.json
 
-find ./ -type f -exec     sed -i 's/95.85.39.236/127.0.0.1/g' {} +
-find ./mydatasink -type f -exec     sed -i 's/178.62.229.148/127.0.0.1/g' {} +
-find ./mydatasource -type f -exec     sed -i 's/178.62.229.148/127.0.0.1/g' {} +
-find ./mydatasink -type f -exec     sed -i 's/178.62.244.150/127.0.0.1/g' {} +
-find ./mydatasource -type f -exec     sed -i 's/178.62.244.150/127.0.0.1/g' {} +
 
 echo "Setting database script in Sink executable!"
 chmod +x ./mydatasink/DataSink/scripts/create_db.sh
