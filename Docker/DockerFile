@@ -18,11 +18,6 @@ ENV MYSQL_PASSWORD XmNT86Pi
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Update package list
-#RUN ping 8.8.8.8
-#RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf
-#RUN curl google.fi
-#RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-#RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main universe" > /etc/apt/sources.list
 RUN apt-get update
 
 #RUN apt-get -y install timedatectl
@@ -43,19 +38,6 @@ RUN apt-get update
 #RUN apt-get -y install wget
 
 
-# MySQL
-#RUN echo 'mysql-server mysql-server/root_password password $MYSQL_PASSWORD' > configs.cfg
-#RUN echo 'mysql-server mysql-server/root_password_again password $MYSQL_PASSWORD' >> configs.cfg
-
-#PHPMyAdmin
-#RUN echo 'phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2' >> configs.cfg
-#RUN echo 'phpmyadmin phpmyadmin/dbconfig-install boolean true' >> configs.cfg
-#RUN echo 'phpmyadmin phpmyadmin/mysql/admin-user string root' >> configs.cfg
-#RUN echo 'phpmyadmin phpmyadmin/mysql/admin-pass password $MYSQL_PASSWORD' >> configs.cfg
-#RUN echo 'phpmyadmin phpmyadmin/mysql/app-pass password $MYSQL_PASSWORD' >> configs.cfg
-#RUN echo 'phpmyadmin phpmyadmin/app-password-confirm password $MYSQL_PASSWORD' >> configs.cfg
-#RUN debconf-set-selections configs.cfg
-
 #RUN apt-get -y install ntp
 RUN apt-get -y install build-essential
 RUN apt-get -y install curl wget
@@ -70,7 +52,6 @@ RUN apt-get -y install apache2
 
 RUN apt-get -y install php5 libapache2-mod-php5
 RUN apt-get -y install mysql-server
-#RUN apt-get -y install phpmyadmin
 RUN apt-get -y install libmysqlclient-dev
 RUN apt-get -y install git
 #RUN apt-get -y install nginx
@@ -87,14 +68,6 @@ RUN pip install requests
 RUN pip install flask-cors
 RUN pip install flask-cache
 
-#RUN wget http://mirrors.kernel.org/ubuntu/pool/main/p/python-urllib3/python-urllib3_1.11-1_all.deb
-#RUN wget http://mirrors.kernel.org/ubuntu/pool/main/r/requests/python-requests_2.7.0-3_all.deb
-#RUN dpkg -i python-urllib3_1.11-1_all.deb
-#RUN dpkg -i python-requests_2.7.0-3_all.deb
-#RUN rm -f python-urllib3_1.11-1_all.deb
-#RUN rm -f python-requests_2.7.0-3_all.deb
-
-
 
 # Configure Apache2 and ensure mcrypt is loaded
 #RUN ls -alh /etc/service/apache2/
@@ -106,10 +79,6 @@ ENV APACHE_PID_FILE /var/run/apache2.pid
 RUN mkdir -p /etc/my_init.d
 ADD services.sh /etc/rc.local
 RUN chmod +x /etc/rc.local
-
-#RUN mkdir /etc/service/apache2
-#ADD http://pastebin.com/raw/TzD6uUjg /etc/service/apache2/run
-#RUN chmod +x /etc/service/apache2/run
 
 
 RUN php5enmod mcrypt
