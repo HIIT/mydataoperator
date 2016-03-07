@@ -40,7 +40,7 @@ with open("operator_public_key.pem", "rb") as key_file:
     operator_rsa_public = serialization.load_pem_public_key(key_file.read(), default_backend())
 # operator_rsa_public = load_pem_x509_certificate(key_file.read(), default_backend())
 
-virheet = {
+error_responses = {
     'MethodNotAllowed': {
         'msg': "You probably POSTed something to GET end point or GET something from POST endpoint.",
         'status': 405,
@@ -76,7 +76,7 @@ app.logger.addHandler(logConsoleHandle)
 # app.logger.addHandler(fileHandler)
 # app.logger.setLevel(logging.DEBUG)
 app.secret_key = 'Nants ingonyama bagithi baba, Sithi uhhmm ingonyama, Ingonyama'
-api = Api(app, errors=virheet, catch_all_404s=True)
+api = Api(app, errors=error_responses, catch_all_404s=True)
 # db = db_handler.High()
 # tests = db_handler.Test_editable(db)
 logger = app.logger
