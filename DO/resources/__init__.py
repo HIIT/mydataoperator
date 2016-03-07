@@ -1,1 +1,1 @@
-__author__ = 'alpaloma'
+__author__ = 'Aleksi Palomäki'
