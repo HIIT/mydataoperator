@@ -131,7 +131,7 @@ RUN ln -s /~/mydataoperatorui/DataOperator-UI/ /var/www
 
 
 # Setup DataOperator UI
-RUN sed -i 's/178.62.244.150:8080/127.0.0.1:10000/g' ./mydataoperatorui/DataOperator-UI/js/controllers.js
+RUN sed -i 's/127.0.0.1:8080/127.0.0.1:10000/g' ./mydataoperatorui/DataOperator-UI/js/controllers.js
 
 # Set up log directories for sink and source
 RUN mkdir -p /~/mydatasource/DataSource/logs/
