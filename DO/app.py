@@ -156,7 +156,6 @@ def check_auth(username, password):
     """
     #    js = json.dumps({"username": "admin", "password": "Hello"})
     #    db.register_userAccount(js)
-    # js = json.dumps({"email":"aleksi.ajp@gmail.com", "firstName":"Aleksi", "lastName":"Palomaki", "gender":"male"})
     # db.add_user(js)
     #    db.modify_userAccount(json.dumps({"id":1, "password": "Hello"}))
 
